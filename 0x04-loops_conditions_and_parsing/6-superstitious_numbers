@@ -3,13 +3,13 @@
 count=1
 while [ $count -le 20 ]; do
 	if [ $count -eq 4 ]; then
-		echo "4"
+		echo 4
 		echo "bad luck from China"
 	elif [ $count -eq 9 ]; then 
-		echo "9"
+		echo 9
 		echo "bad luck from Japan"
 	elif [ $count -eq 17 ]; then
-		echo "17"
+		echo 17
 		echo "bad luck from Italy"
 	else
 		echo $count
