@@ -3,16 +3,11 @@
 hour=0
 minute=1
 while [ $hour -le 23 ]; do
-    # Display the hour
     echo "Hour: $hour"
-    
-    # Display the minutes for the current hour
     while [ $minute -le 59 ]; do
         echo $minute
         ((minute++))
     done
-    
-    # Reset minutes and increment hour
     minute=1
     ((hour++))
 done
