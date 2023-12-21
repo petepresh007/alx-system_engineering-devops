@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
-
-# Initialize hour and minute variables
+#Initialize hour and minute variables
 hour=0
 minute=1
-
-# Use a while loop to display time for 24 hours and 59 minutes
 while [ $hour -le 23 ]; do
     # Display the hour
     echo "Hour: $hour"
