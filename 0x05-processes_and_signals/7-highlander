@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 #terminate with a message
+#a function to terminate a process
 termMessage(){
 	echo "I am invincible!!!"
 	exit 0
 }
-
 trap 'termMessage' SIGTERM
-
 while true; do
 	echo "To infinity and beyond"
 	sleep 2
