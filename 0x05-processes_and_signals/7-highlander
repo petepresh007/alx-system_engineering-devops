@@ -3,7 +3,6 @@
 #a function to terminate a process
 termMessage(){
 	echo "I am invincible!!!"
-	exit 0
 }
 trap 'termMessage' SIGTERM
 while true; do
