@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# a script that creates redirection using sed
+sudo apt-get update
+sudo apt-get install -y nginx
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+var_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/google.com permanent;"
+sudo sed -i "s/server_name _;/$var_string/" /etc/nginx/sites-enabled/default
