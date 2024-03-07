@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# a script to create header
+sudo apt update
+sudo apt install nginx -y
+var_string="\\tadd_header X-Served-By \$hostname;"
+sudo sed -i "s/server_name _;/server_name _;\n$var_string/" /etc/nginx/sites-available/default
+sudo nginx -t
+sudo service nginx restart
