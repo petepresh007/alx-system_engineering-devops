@@ -5,5 +5,4 @@ sudo apt install nginx -y
 var_string="\\tadd_header X-Served-By \$hostname;"
 sudo sed -i 's/server_name _;/server_name _;\
 '"$var_string"'/' /etc/nginx/sites-available/default
-sudo nginx -t
 sudo service nginx restart
