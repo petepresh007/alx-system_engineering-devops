@@ -25,13 +25,13 @@ defaults
     timeout server 50000ms
 
 frontend http_front
-    bind *:8080
+    bind *:80
     default_backend http_back
 
 backend http_back
     balance roundrobin
-    server 468726-web-01 54.87.227.46:8080 check
-    server 468726-web-02 54.236.54.5:8080 check
+    server 468726-web-01 54.87.227.46:80 check
+    server 468726-web-02 54.236.54.5:80 check
 EOF
 
 # Enable HAProxy service
