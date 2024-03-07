@@ -13,6 +13,5 @@ var_string="listen 80 default_server;\\n\
 \t\\troot \\/var\\/www\\/html;\\n\
 \t\\tinternal;\\n\
 \t}"
-
 sudo sed -i "s/listen 80 default_server;/$var_string/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
