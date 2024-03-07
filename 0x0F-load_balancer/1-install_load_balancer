@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# installs haproxy with configurations
+sudo apt update
+sudo apt install -y haproxy
+
+# Configure HAProxy
+sudo mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+sudo tee /etc/haproxy/haproxy.cfg >/dev/null <<EOF
+global
+    log /dev/log    local0
+    log /dev/log    local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    option tcplog
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http_front
+    bind *:8080
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server 468726-web-01 54.87.227.46:8080 check
+    server 468726-web-02 54.236.54.5:8080 check
+EOF
+
+# Enable HAProxy service
+sudo systemctl enable haproxy
+sudo systemctl restart haproxy
+
+# Verify HAProxy status
+sudo systemctl status haproxy
