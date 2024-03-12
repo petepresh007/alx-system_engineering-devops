@@ -4,6 +4,6 @@
 # creates a symbolic link
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 # restart nginx
-service nginx restart
+service nginx start
 # terminate existing nginx process
 kill "$(pgrep 'nginx' | head -1)"
