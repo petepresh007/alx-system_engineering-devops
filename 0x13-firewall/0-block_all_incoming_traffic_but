@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# installing ufw to web-01
+# install ufw
+sudo apt update
+sudo apt install ufw -y
+# enable ufw
+sudo ufw enable
+sudo ufw default deny incoming
+# set permissions
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+# verify ufw status
+sudo ufw status
