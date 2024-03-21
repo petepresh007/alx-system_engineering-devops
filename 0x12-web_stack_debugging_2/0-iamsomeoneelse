@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# check for created users
+username=$1
+su - "$username" -c 'whoami'
