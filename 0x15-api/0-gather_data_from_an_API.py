@@ -11,7 +11,7 @@ res = requests.get(f"https://jsonplaceholder.typicode.com/users/{sys.argv[1]}")
 if res.status_code != 200:
     print("an error occured")
 employee_data = res.json()
-employee_name = employee_data["name"]
+employee_name = employee_data.get("name")
 
 res_todo = requests.get(
         f"https://jsonplaceholder.typicode.com/todos?userId={sys.argv[1]}"
@@ -21,10 +21,10 @@ if res_todo.status_code != 200:
 emp_todo = res_todo.json()
 
 t_task = len(emp_todo)
-com_task = [task for task in emp_todo if task["completed"]]
+com_task = [task for task in emp_todo if task.get("completed")]
 len_compl = len(com_task)
 print(
   f"Employee {employee_name} is done with tasks({len_compl}/{t_task}):"
   )
 for task in com_task:
-    print(f"\t{task['title']}")
+    print(f"\t{task.get('title')}")
