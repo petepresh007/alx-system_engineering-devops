@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     data = {userID: []}
     for task in tasks:
-        comp_task = task.get("complete")
+        comp_task = task.get("completed")
         task_title = task.get("title")
         data[userID].append({
             "task": task_title,
