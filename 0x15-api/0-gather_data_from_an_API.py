@@ -1,25 +1,30 @@
 #!/usr/bin/python3
-"""
-get users todo list from an api and display all the todos
-with some certain criteria
-"""
+'''
+get employee's data from a provided api
+'''
 
-
+import re
 import requests
 import sys
-res = requests.get(f"https://jsonplaceholder.typicode.com/users/{sys.argv[1]}")
-employee_data = res.json()
-employee_name = employee_data.get("name")
 
-res_todo = requests.get(
-        f"https://jsonplaceholder.typicode.com/todos?userId={sys.argv[1]}"
-        )
-emp_todo = res_todo.json()
-t_task = len(emp_todo)
-com_task = [task for task in emp_todo if task.get("completed")]
-len_compl = len(com_task)
-print(
-  f"Employee {employee_name} is done with tasks({len_compl}/{t_task}):"
-  )
-for task in com_task:
-    print(f"\t{task.get('title')}")
+url = "https://jsonplaceholder.typicode.com"
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if re.fullmatch(r'\d+', sys.argv[1]):
+            id = int(sys.argv[1])
+            req = requests.get('{}/users/{}'.format(url, id)).json()
+            task = requests.get('{}/todos'.format(url)).json()
+            emp_name = req.get('name')
+            tasks = list(filter(lambda x: x.get('userId') == id, task))
+            completed_tasks = list(filter(lambda x: x.get('completed'), tasks))
+            print(
+                'Employee {} is done with tasks({}/{}):'.format(
+                    emp_name,
+                    len(completed_tasks),
+                    len(tasks)
+                )
+            )
+            if len(completed_tasks) > 0:
+                for task in completed_tasks:
+                    print('\t {}'.format(task.get('title')))
