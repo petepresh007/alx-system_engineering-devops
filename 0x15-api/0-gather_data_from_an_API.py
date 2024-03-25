@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-get users todo list from an api
+get users todo list from an api and display all the todos
+with some certain criteria
 """
 import requests
 import sys
@@ -19,9 +20,11 @@ if res_todo.status_code != 200:
     print("an error occured")
 emp_todo = res_todo.json()
 
-total_task = len(emp_todo)
-completed_task = [task for task in emp_todo if task["completed"]]
-len_completedtask = len(completed_task)
-print(f"{employee_name} is done with tasks({len_completedtask}/{total_task}):")
-for task in completed_task:
+t_task = len(emp_todo)
+com_task = [task for task in emp_todo if task["completed"]]
+len_compl = len(com_task)
+print(
+  f"Employee {employee_name} is done with tasks({len_compl}/{t_task}):"
+  )
+for task in com_task:
     print(f"\t{task['title']}")
