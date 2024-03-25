@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-""" Export api to a csv format"""
+""" Export api to a json format"""
 import json
 import requests
 import sys
+
 
 if __name__ == '__main__':
     userID = sys.argv[1]
