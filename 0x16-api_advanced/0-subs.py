@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
             )
     if red_api.status_code == 200:
         data = red_api.json()
-        subscribers = data["data"]["subscribers"]
+        subscribers = data.get("data").get("subscribers")
         return subscribers
     elif red_api.status_code == 404:
         return 0
