@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """a module to import"""
 import requests
+import sys
 
 
 def top_ten(subreddit):
@@ -17,3 +18,7 @@ def top_ten(subreddit):
             print(post.get("data").get("title"))
     elif red_api.status_code == 404:
         print(None)
+
+
+if __name__ == "__main__":
+    top_ten(sys.argv[1])
