@@ -11,11 +11,11 @@ def number_of_subscribers(subreddit):
             f"https://www.reddit.com/r/{subreddit}/about.json",
             headers=headers
             )
-    if red_api.status_code == 200:
+    try:
         data = red_api.json()
         subscribers = data.get("data").get("subscribers")
         return subscribers
-    elif red_api.status_code == 404:
+    except Exception:
         return 0
 
 
