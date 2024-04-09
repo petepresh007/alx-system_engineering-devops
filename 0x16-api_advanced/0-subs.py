@@ -1,20 +1,20 @@
 #!/usr/bin/python3
-"""a module to import"""
+'''
+    contains the function number_of_subscribers
+'''
 import requests
 import sys
 
 
 def number_of_subscribers(subreddit):
-    """module to send a requests"""
-    headers = {'User-Agent': 'MyBot/1.0'}
-    red_api = requests.get(
-            f"https://www.reddit.com/r/{subreddit}/about.json",
-            headers=headers
-            )
+    '''
+        returns the number of subscribers for a given subreddit
+    '''
+    headers = {'User-Agent': 'Lizzie'}
+    url = requests.get('https://www.reddit.com/r/{}/about.json'
+                       .format(subreddit), headers=headers).json()
     try:
-        data = red_api.json()
-        subscribers = data.get("data").get("subscribers")
-        return subscribers
+        return url.get('data').get('subscribers')
     except Exception:
         return 0
 
