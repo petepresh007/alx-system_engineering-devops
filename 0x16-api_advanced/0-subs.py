@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """a module to import"""
 import requests
+import sys
 
 
 def number_of_subscribers(subreddit):
@@ -16,3 +17,7 @@ def number_of_subscribers(subreddit):
         return subscribers
     elif red_api.status_code == 404:
         return 0
+
+
+if __name__ == "__main__":
+    number_of_subscribers(sys.argv[1])
