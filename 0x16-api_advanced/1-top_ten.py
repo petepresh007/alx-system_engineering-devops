@@ -13,7 +13,7 @@ def top_ten(subreddit):
             )
     if red_api.status_code == 200:
         data = red_api.json()
-        for post in data["data"]["children"]:
-            print(post["data"]["title"])
+        for post in data.get("data").get("children"):
+            print(post.get("data").get("title"))
     elif red_api.status_code == 404:
         print(None)
