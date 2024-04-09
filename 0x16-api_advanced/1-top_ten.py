@@ -8,7 +8,8 @@ def top_ten(subreddit):
     headers = {'User-Agent': 'MyBot/1.0'}
     red_api = requests.get(
             f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10",
-            headers=headers
+            headers=headers,
+            allow_redirects=False
             )
     if red_api.status_code == 200:
         data = red_api.json()
